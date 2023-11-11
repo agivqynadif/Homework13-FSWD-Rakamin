@@ -1,9 +1,7 @@
-import { VStack } from "@chakra-ui/react";
+import { Heading, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import Books from "../components/Books";
 import { getAllBooks } from "../modules/fetch";
- 
-
 
 export default function Homepage() {
   const [books, setBooks] = useState([]);
@@ -17,6 +15,9 @@ export default function Homepage() {
 
   return (
     <VStack w="100vw">
+      <Heading>
+        <marquee>Welcome to Nadif's Library. Happy reading 😊.</marquee>
+      </Heading>
       {books?.books?.map((book) => (
         <Books key={`${book.id} ${book.title}`} {...book} />
       ))}

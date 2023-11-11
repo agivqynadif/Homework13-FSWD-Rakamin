@@ -1,22 +1,4 @@
-import {
-  Button,
-  Flex,
-  FormControl,
-  FormLabel,
-  HStack,
-  Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  Text,
-  useDisclosure,
-  useToast,
-  VStack,
-} from "@chakra-ui/react";
+import { Button, Flex, FormControl, FormLabel, HStack, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure, useToast, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../modules/fetch";
@@ -35,20 +17,11 @@ const Navbar = () => {
   }, [window.localStorage.getItem("token")]);
 
   return (
-    <Flex
-      w="full"
-      as="nav"
-      align="center"
-      justify="space-between"
-      wrap="wrap"
-      padding="1rem"
-      bg="teal.500"
-      color="white"
-    >
+    <Flex w="full" as="nav" align="center" justify="space-between" wrap="wrap" padding="1rem" bg="teal.500" color="white">
       <Link to="/">
         <Flex align="center" mr={5} cursor="pointer">
           <Text fontSize="xl" fontWeight="bold">
-            My Website
+            📖 Nadif's Library
           </Text>
         </Flex>
       </Link>
@@ -64,11 +37,11 @@ const Navbar = () => {
           </Button>
         ) : (
           <Button
-            colorScheme="blue"
+            colorScheme="red"
             onClick={() => {
               window.localStorage.removeItem("token");
               setIsLogin(false);
-              navigate("/")
+              navigate("/");
             }}
           >
             Logout
@@ -82,10 +55,7 @@ const Navbar = () => {
           onSubmit={async (e) => {
             e.preventDefault();
             try {
-              const token = await loginUser(
-                e.target.email.value,
-                e.target.password.value
-              );
+              const token = await loginUser(e.target.email.value, e.target.password.value);
               window.localStorage.setItem("token", token.token);
               navigate("/");
               onClose();
@@ -108,19 +78,11 @@ const Navbar = () => {
               <VStack>
                 <FormControl isRequired>
                   <FormLabel>Email</FormLabel>
-                  <Input
-                    name="email"
-                    type="email"
-                    placeholder="Enter your email address"
-                  />
+                  <Input name="email" type="email" placeholder="Enter your email address" />
                 </FormControl>
                 <FormControl isRequired>
                   <FormLabel>Password</FormLabel>
-                  <Input
-                    type="password"
-                    name="password"
-                    placeholder="Enter your password"
-                  />
+                  <Input type="password" name="password" placeholder="Enter your password" />
                 </FormControl>
               </VStack>
             </ModalBody>
@@ -129,9 +91,7 @@ const Navbar = () => {
                 Login
               </Button>
               <Link to="/register" onClick={onClose}>
-                <Button variant="ghost">
-                  Doesn't Have Account? Click here
-                </Button>
+                <Button variant="ghost">Doesn't Have Account? Click here</Button>
               </Link>
             </ModalFooter>
           </ModalContent>
